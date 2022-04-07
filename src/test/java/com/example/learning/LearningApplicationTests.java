@@ -1,6 +1,5 @@
-package com.example.learning;import com.example.learning.controllers.TestController;
-import org.junit.runner.RunWith;
-import org.mockito.junit.MockitoJUnitRunner;
+package com.example.learning;
+
 import org.springframework.boot.test.context.SpringBootTest;
 
     @SpringBootTest

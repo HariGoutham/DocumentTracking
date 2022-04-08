@@ -1,39 +1,37 @@
 package com.example.learning.service;
 
 import com.example.learning.LearningApplicationTests;
+import com.example.learning.entity.Document;
+import com.example.learning.repository.DocumentRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyString;
 
 public class DocumentServiceTest extends LearningApplicationTests {
 
-//    @InjectMocks
-//    ProductService productService;
-//
-//    @Mock
-//    ProductRepository productRepository;
+    @InjectMocks
+    DocumentService docService;
+
+    @Mock
+    DocumentRepository docRepository;
 
     @Test
-    public void getAllProductsTest(){
-//        List<Product> list = new ArrayList<Product>();
-//        Product p1 = new Product();
-//        p1.setId(1);
-//        p1.setName("Fridge");
-//        p1.setPrice(16000);
-//        list.add(p1);
-//        Mockito.when(productRepository.findAll()).thenReturn(list);
-//        List<Product> products = productService.listAll();
-//        assertEquals(1, products.size());
-//        assertEquals(products.get(0).getId(), 1);
-//        assertEquals(products.get(0).getName(), "Fridge");
-//        assertEquals(products.get(0).getPrice(), 16000);
-
+    public void getDocumentTest(){
+        Document doc = new Document();
+        doc.setName("new_variant_2");
+        doc.setSuperseded(true);
+        doc.setBusinessId("DOC1");
+        doc.setStudy("New Study");
+        Mockito.when(docRepository.findByStudyEnvironmentUuid(anyString())).thenReturn(doc);
+        assertEquals(doc.getName(), "new_variant_2");
+        assertEquals(doc.getSuperseded(), true);
+        assertEquals(doc.getBusinessId(), "DOC1");
+        assertEquals(doc.getStudy(), "New Study");
     }
 
 }

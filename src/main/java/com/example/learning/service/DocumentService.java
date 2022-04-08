@@ -17,4 +17,7 @@ public class DocumentService {
     public Document findByUUID(String uuid) {
         return docRepo.findByStudyEnvironmentUuid(uuid);
     }
+    public Document save(Document doc) {
+        return docRepo.save(doc);
+    }
 }

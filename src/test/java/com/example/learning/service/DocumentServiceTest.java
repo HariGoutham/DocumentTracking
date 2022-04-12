@@ -27,11 +27,15 @@ public class DocumentServiceTest extends LearningApplicationTests {
         doc.setSuperseded(true);
         doc.setBusinessId("DOC1");
         doc.setStudy("New Study");
+
+
         Mockito.when(docRepository.findByStudyEnvironmentUuid(anyString())).thenReturn(doc);
-        assertEquals(doc.getName(), "new_variant_2");
-        assertEquals(doc.getSuperseded(), true);
-        assertEquals(doc.getBusinessId(), "DOC1");
-        assertEquals(doc.getStudy(), "New Study");
+
+        Document docSer = docService.findByUUID("471c-9cb8-c27882ea68cbe");
+        assertEquals(docSer.getName(), "new_variant_2");
+        assertEquals(docSer.getSuperseded(), true);
+        assertEquals(docSer.getBusinessId(), "DOC1");
+        assertEquals(docSer.getStudy(), "New Study");
     }
 
 }

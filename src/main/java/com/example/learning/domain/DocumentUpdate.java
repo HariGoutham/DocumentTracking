@@ -1,62 +1,71 @@
-package com.example.learning.entity;
-
-import org.hibernate.validator.constraints.NotBlank;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+package com.example.learning.domain;
 import java.util.Date;
 
-@Entity
-public class Document {
+public class DocumentUpdate {
 
-    @Id
-    @Column(name = "study_environment_uuid")
     private String studyEnvironmentUuid;
 
     private String contextUri;
 
-    @Column(name = "oid")
     private String oid;
 
-    @Column(name = "study")
     private String study;
 
-    @Column(name = "study_name")
     private String studyName;
 
-    @Column(name = "document_type")
     private String documentType;
 
-    @Column(name = "document_version")
     private String documentVersion;
 
-    @Column(name = "version_date")
     private Date versionDate;
 
-    @Column(name = "external_id")
     private String externalId;
 
-    @Column(name = "superseded")
     private Boolean superseded;
 
-    @Column(name = "business_id")
     private String businessId;
 
-    @Column(name = "name")
     private String name;
 
-    @Column(name = "created_at")
     private Date createdAt;
 
-    @Column(name = "modified_at")
     private Date modifiedAt;
 
-    @Column(name = "created_by_uri")
     private String createdByUri;
 
-    @Column(name = "inactive")
     private Boolean inactive;
+
+    public String getStudyEnvironmentUuid() {
+        return studyEnvironmentUuid;
+    }
+
+    public void setStudyEnvironmentUuid(String studyEnvironmentUuid) {
+        this.studyEnvironmentUuid = studyEnvironmentUuid;
+    }
+
+    public String getContextUri() {
+        return contextUri;
+    }
+
+    public void setContextUri(String contextUri) {
+        this.contextUri = contextUri;
+    }
+
+    public String getOid() {
+        return oid;
+    }
+
+    public void setOid(String oid) {
+        this.oid = oid;
+    }
+
+    public String getStudy() {
+        return study;
+    }
+
+    public void setStudy(String study) {
+        this.study = study;
+    }
 
     public String getStudyName() {
         return studyName;
@@ -152,37 +161,5 @@ public class Document {
 
     public void setInactive(Boolean inactive) {
         this.inactive = inactive;
-    }
-
-    public String getStudyEnvironmentUuid() {
-        return studyEnvironmentUuid;
-    }
-
-    public void setStudyEnvironmentUuid(String studyEnvironmentUuid) {
-        this.studyEnvironmentUuid = studyEnvironmentUuid;
-    }
-
-    public String getContextUri() {
-        return contextUri;
-    }
-
-    public void setContextUri(String contextUri) {
-        this.contextUri = contextUri;
-    }
-
-    public String getOid() {
-        return oid;
-    }
-
-    public void setOid(String oid) {
-        this.oid = oid;
-    }
-
-    public String getStudy() {
-        return study;
-    }
-
-    public void setStudy(String study) {
-        this.study = study;
     }
 }

@@ -20,4 +20,9 @@ public class DocumentService {
     public Document save(Document doc) {
         return docRepo.save(doc);
     }
+
+    public void deleteById(String uuid) {
+
+         docRepo.deleteById(uuid);
+    }
 }

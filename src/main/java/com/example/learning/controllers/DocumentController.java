@@ -10,10 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.beans.IntrospectionException;
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URISyntaxException;
-import java.util.Objects;
 
 @RestController
 public class DocumentController {
@@ -36,7 +34,7 @@ public class DocumentController {
  @PatchMapping({"/documents/{uuid}"})
  public ResponseEntity<Document> patch(@PathVariable String uuid ,@Valid @RequestBody Document docRequest) throws IntrospectionException, InvocationTargetException, IllegalAccessException {
   Document docDB = docService.findByUUID(uuid);
-  DocTrackUtility.setFieldsFromRequest(docRequest, docDB);
+  DocTrackUtility.setFields(docRequest, docDB);
   return ResponseEntity.ok(docService.save(docDB));
  }
 

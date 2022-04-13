@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -29,6 +30,17 @@ public class DocumentController {
    doc.setDocumentType(docdetails.getDocumentType());
   }
   final Document updateddoc = docService.save(doc);
+  return ResponseEntity.ok(updateddoc);
+ }
+
+ @PostMapping({"/documents/{doc}"})
+ public ResponseEntity<Document> patch(@PathParam("doc") Document doc , @RequestBody Document docdetails){
+  Document docn = docService.save(doc);
+  if (docdetails.getDocumentType()!=null ) {
+
+   doc.setDocumentType(docdetails.getDocumentType());
+  }
+  final Document updateddoc = docService.save(docn);
   return ResponseEntity.ok(updateddoc);
  }
 }

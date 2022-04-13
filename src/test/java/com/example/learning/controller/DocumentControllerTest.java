@@ -76,4 +76,24 @@ public class DocumentControllerTest extends LearningApplicationTests {
                 .andDo(MockMvcResultHandlers.print());
 
     }
+
+    @Test
+    public void testpost() throws Exception{
+        MockMvc mvc = webAppContextSetup(webApplicationContext).build();
+        String studyEnvironmentUuid = "471c-9cb8-c27882ea68cbe";
+        String documentType = "new updated content";
+        MockHttpServletRequestBuilder builder =
+                MockMvcRequestBuilders.patch("/documents/" + studyEnvironmentUuid)
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .characterEncoding("UTF-8");
+        mvc.perform(builder)
+                .andExpect(MockMvcResultMatchers.status()
+                        .isOk())
+                .andExpect(MockMvcResultMatchers.content()
+                        .string("DOCUMENT created with documenttype: " + documentType))
+                .andDo(MockMvcResultHandlers.print());
+    }
 }
+
+

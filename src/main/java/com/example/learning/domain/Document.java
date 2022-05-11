@@ -2,6 +2,7 @@ package com.example.learning.domain;
 
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
+import java.util.List;
 
 public class Document {
 
@@ -10,6 +11,8 @@ public class Document {
 
     @NotBlank(message = "contextUri is mandatory")
     private String contextUri;
+
+    private List<String> contextUris;
 
     private String oid;
 

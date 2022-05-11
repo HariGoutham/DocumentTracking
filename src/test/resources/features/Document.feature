@@ -1,6 +1,7 @@
 Feature: Verify document details
 
 
+  @version1
   Scenario Outline: Send a valid Request to get document details
     Given Send a request to the URL documents uuid to get document details with "<uuid>"
     Then the response will return status 200 and document details

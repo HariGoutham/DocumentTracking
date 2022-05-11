@@ -42,4 +42,13 @@ public class DocumentStepDefinition {
     public void the_response_will_return_status_and_value_is_update(Integer int1) {
 
     }
+
+    @Given("Numbers {int} and {int}")
+    public void numbersAnd(int arg0, int arg1) {
+
+    }
+
+    @Then("calculate sum of the numbers")
+    public void calculateSumOfTheNumbers() {
+    }
 }

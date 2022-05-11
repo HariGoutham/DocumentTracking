@@ -1,6 +1,6 @@
 package com.example.learning.controllers;
 
-import com.example.learning.entity.Document;
+import com.example.learning.entity.DocumentEntity;
 import com.example.learning.service.DocumentService;
 import com.example.learning.utility.DocTrackUtility;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,27 +20,33 @@ public class DocumentController {
  private DocumentService docService;
 
  @GetMapping("/documents/{uuid}")
- public Document getDoc(@PathVariable String uuid) {
+ public DocumentEntity getDoc(@PathVariable String uuid) {
   return docService.findByUUID(uuid);
  }
 
 
  @PostMapping("/documents")
- ResponseEntity<Document>createDocument( @RequestBody Document document) throws URISyntaxException {
-  Document doc = docService.save(document);
+ ResponseEntity<DocumentEntity>createDocument(@RequestBody DocumentEntity document) throws URISyntaxException {
+  DocumentEntity doc = docService.save(document);
   return new ResponseEntity(doc, HttpStatus.CREATED);
  }
 
  @PatchMapping({"/documents/{uuid}"})
- public ResponseEntity<Document> patch(@PathVariable String uuid ,@Valid @RequestBody Document docRequest) throws IntrospectionException, InvocationTargetException, IllegalAccessException {
-  Document docDB = docService.findByUUID(uuid);
+ public ResponseEntity<DocumentEntity> patch(@PathVariable String uuid , @Valid @RequestBody DocumentEntity docRequest) throws IntrospectionException, InvocationTargetException, IllegalAccessException {
+  DocumentEntity docDB = docService.findByUUID(uuid);
   DocTrackUtility.setFields(docRequest, docDB);
   return ResponseEntity.ok(docService.save(docDB));
  }
 
  @DeleteMapping("/documents/{uuid}")
- public ResponseEntity<Document> deleteDocument(@PathVariable String uuid) {
+ public ResponseEntity<DocumentEntity> deleteDocument(@PathVariable String uuid) {
   docService.deleteById(uuid);
   return ResponseEntity.ok().build();
+ }
+
+ @PostMapping("/bulk/documents")
+ ResponseEntity<DocumentEntity> createBulkDocument(@RequestBody DocumentEntity document) throws URISyntaxException {
+  DocumentEntity doc = docService.save(document);
+  return new ResponseEntity(doc, HttpStatus.CREATED);
  }
 }

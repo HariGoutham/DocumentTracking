@@ -1,29 +1,29 @@
 package com.example.learning.entity;
 
 import com.example.learning.validations.ValidUUID;
-import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-public class Document {
+@Table(name = "document")
+public class DocumentEntity {
 
     @Id
     @Column(name = "study_environment_uuid")
-    @NotNull(message = "study_environment_uuid cannot be null or empty")
-    @ValidUUID
+    //@NotNull(message = "study_environment_uuid cannot be null or empty")
     private String studyEnvironmentUuid;
 
     @Column(name = "context_uri")
-    @NotNull(message = "contextUri cannot be null or empty")
+    //@NotNull(message = "contextUri cannot be null or empty")
     private String contextUri;
 
     @Column(name = "oid")
-    @NotNull(message = "oid cannot be null or empty")
+    //@NotNull(message = "oid cannot be null or empty")
     private String oid;
 
     @Column(name = "study")

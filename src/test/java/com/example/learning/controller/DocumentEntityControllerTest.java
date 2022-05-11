@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
 @WebAppConfiguration
-public class DocumentControllerTest extends LearningApplicationTests {
+public class DocumentEntityControllerTest extends LearningApplicationTests {
 
     @Autowired
     WebApplicationContext webApplicationContext;
@@ -24,6 +24,7 @@ public class DocumentControllerTest extends LearningApplicationTests {
         String uri = "/documents/471c-9cb8-c27882ea68cbe";
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
                 .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+
         int status = mvcResult.getResponse().getStatus();
         assertEquals(200, status);
         String content = mvcResult.getResponse().getContentAsString();

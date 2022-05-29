@@ -30,6 +30,7 @@ public class DocumentStepDefinition {
     }
 
     @Then("the response will return status {int} and document details")
+
     public void the_response_will_return_status_and_document_details(Integer int1) {
         Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
     }
@@ -43,12 +44,11 @@ public class DocumentStepDefinition {
 
     }
 
-    @Given("Numbers {int} and {int}")
-    public void numbersAnd(int arg0, int arg1) {
-
-    }
-
     @Then("calculate sum of the numbers")
     public void calculateSumOfTheNumbers() {
+    }
+
+    @Then("test")
+    public void test() {
     }
 }

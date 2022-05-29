@@ -5,6 +5,7 @@ Feature: Verify document details
   Scenario Outline: Send a valid Request to get document details
     Given Send a request to the URL documents uuid to get document details with "<uuid>"
     Then the response will return status 200 and document details
+    Then test
     Examples:
       |uuid                      |
       |00bd48f1-5cd3-471c-9cb8   |

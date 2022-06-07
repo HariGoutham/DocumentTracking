@@ -46,24 +46,18 @@ public final class AlphanumericSortComparatorTest<T> implements  Comparator<T> {
 
         int ia = 0;
         int ib = 0;
-        int nza = 0;
-        int nzb = 0;
-        char ca, cb;
-        int result;
+        char ca;
+        char cb;
 
         while (true) {
-            nza = 0;
-            nzb = 0;
             ca = charAt(a, ia);
             cb = charAt(b, ib);
             while (isCharIsZero(ca)) {
-                nza++;
                 if (checkIsDigit(a,ia))
                     break;
                 ca = charAt(a, ++ia);
             }
             while (isCharIsZero(cb)) {
-                nzb++;
                 if (checkIsDigit(b,ib))
                     break;
                 cb = charAt(b, ++ib);

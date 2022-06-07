@@ -3,11 +3,6 @@ package com.example.learning.service;
 import java.util.Arrays;
 import java.util.Comparator;
 
-// Java alphanumeric sort
-// unsorted array:     [10, 1, 2]
-// simple Arrays.sort: [1, 10, 2]
-// alphanumeric sort:  [1, 2, 10]
-//
 public final class AlphanumericSortComparatorTest<T> implements  Comparator<T> {
 
     public static final Comparator<String> NUMERICAL_ORDER
@@ -30,24 +25,27 @@ public final class AlphanumericSortComparatorTest<T> implements  Comparator<T> {
             char ca = charAt(a, ia);
             char cb = charAt(b, ib);
 
-            if (!Character.isDigit(ca) && !Character.isDigit(cb)) {
+            if (bothCharactersAreNotDigit(ca,cb)) {
                 return bias;
             } else if (!Character.isDigit(ca)) {
                 return -1;
             } else if (!Character.isDigit(cb)) {
                 return +1;
-            } else if (ca < cb) {
-                if (bias == 0) {
+            } else if (ca < cb && bias == 0) {
                     bias = -1;
-                }
-            } else if (ca > cb) {
-                if (bias == 0)
+            } else if (ca > cb && bias == 0) {
                     bias = +1;
             } else if (ca == 0 && cb == 0) {
                 return bias;
             }
         }
     }
+
+    public boolean bothCharactersAreNotDigit(char ca, char cb)
+    {
+       return !Character.isDigit(ca) && !Character.isDigit(cb);
+    }
+
 
     public int compare(T o1, T o2) {
         String a = o1.toString();
@@ -77,11 +75,8 @@ public final class AlphanumericSortComparatorTest<T> implements  Comparator<T> {
                     break;
                 cb = charAt(b, ++ib);
             }
-            if (Character.isDigit(ca) && Character.isDigit(cb)) {
-                if ((result = compareRight(a.substring(ia), b
-                        .substring(ib))) != 0) {
+            if (Character.isDigit(ca) && Character.isDigit(cb) && (result = compareRight(a.substring(ia), b.substring(ib))) != 0) {
                     return result;
-                }
             }
             if (ca == 0 && cb == 0) {
                 return nza - nzb;
@@ -97,12 +92,11 @@ public final class AlphanumericSortComparatorTest<T> implements  Comparator<T> {
     }
 
     private char charAt(String s, int i) {
-        if (i >= s.length()) {
-            return 0;
-        } else {
-            return caseInsensitive ?
-                    Character.toUpperCase(s.charAt(i)) : s.charAt(i);
-        }
+        return i >= s.length() ? 0 : getCharBasedOnCaseSensitivity(s, i);
+    }
+
+    private char getCharBasedOnCaseSensitivity(String s, int i) {
+        return caseInsensitive ? Character.toUpperCase(s.charAt(i)) : s.charAt(i);
     }
 
     public static void main(String[] args) {

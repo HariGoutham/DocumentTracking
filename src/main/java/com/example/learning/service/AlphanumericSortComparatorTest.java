@@ -1,4 +1,4 @@
-package com.test;
+package com.example.learning.service;
 
 import java.util.Arrays;
 import java.util.Comparator;

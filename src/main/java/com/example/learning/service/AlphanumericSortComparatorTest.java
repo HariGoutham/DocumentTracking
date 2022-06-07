@@ -56,15 +56,15 @@ public final class AlphanumericSortComparatorTest<T> implements  Comparator<T> {
             nzb = 0;
             ca = charAt(a, ia);
             cb = charAt(b, ib);
-            while (ca == '0') {
+            while (isCharIsZero(ca)) {
                 nza++;
-                if (!Character.isDigit(charAt(a, ia+1)))
+                if (checkIsDigit(a,ia))
                     break;
                 ca = charAt(a, ++ia);
             }
-            while (cb == '0') {
+            while (isCharIsZero(cb)) {
                 nzb++;
-                if (!Character.isDigit(charAt(b, ib+1)))
+                if (checkIsDigit(b,ib))
                     break;
                 cb = charAt(b, ++ib);
             }
@@ -72,17 +72,40 @@ public final class AlphanumericSortComparatorTest<T> implements  Comparator<T> {
                     return compareRight(a.substring(ia), b.substring(ib));
             }
             if (isDigitEqual(ca,cb)) {
-                return nza - nzb;
+                return getDifference(ca,cb);
             }
-            if (ca < cb) {
+            if (checkCharLessThan(ca,cb)) {
                 return -1;
-            } else if (ca > cb) {
+            } else if (checkCharGreaterThan(ca,cb)) {
                 return +1;
             }
             ++ia;
             ++ib;
         }
     }
+
+    private boolean isCharIsZero(char ch){
+        return  ch == '0';
+    }
+
+    private int getDifference(int a, int b){
+        return a-b;
+    }
+
+
+    private boolean checkCharLessThan(char a, char b){
+        return a < b;
+    }
+
+    private boolean checkCharGreaterThan(char a, char b){
+        return a > b;
+    }
+
+
+    private boolean checkIsDigit(String a,int ia){
+        return !Character.isDigit(charAt(a, ia+1));
+    }
+
 
     private boolean checkIsDigitAndCompareRight(char ca, char cb, String a, String b, int ia, int ib){
         return Character.isDigit(ca) && Character.isDigit(cb) && compareRight(a.substring(ia), b.substring(ib)) != 0;
